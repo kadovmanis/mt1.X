@@ -29,17 +29,16 @@ void PPSconfig(enum ppsConfig ppsSwitch)
 			_U1RXR	= SET_RX;		// RD4	< Rx
 			SET_TX	= IO_U1TX;		// RD5	< Tx
 		#endif
-			
-		PWM_LED0	= IO_OC0;		// PWM
-		PWM_LED1	= IO_OC1;		// PWM
-		PWM_LED2	= IO_OC2;		// PWM
-		PWM_LED3	= IO_OC3;		// PWM
-		PWM_LED4	= IO_OC4;		// PWM
-		PWM_LED5	= IO_OC5;		// PWM
-		PWM_LED6	= IO_OC6;		// PWM
-		PWM_LED7	= IO_OC7;		// PWM
-		PWM_LED8	= IO_OC8;		// PWM
-		PWM_LED9	= IO_OC9;		// PWM
+
+		PWM_LED0	= IO_OC1;		// PWM
+		PWM_LED1	= IO_OC2;		// PWM
+		PWM_LED2	= IO_OC3;		// PWM
+		PWM_LED3	= IO_OC4;		// PWM
+		PWM_LED4	= IO_OC5;		// PWM
+		PWM_LED5	= IO_OC6;		// PWM
+		PWM_LED6	= IO_OC7;		// PWM
+		PWM_LED7	= IO_OC8;		// PWM
+		PWM_LED8	= IO_OC9;		// PWM
 		break;
 	default:
 		break;
