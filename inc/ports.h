@@ -206,9 +206,9 @@ void InputInit	(void);
 //#define NC			_LATD13		//				O	0
 //#define NC			_LATD12		//				O___0______
 #define PWM_LED9		PPS_OUT_D11	//				O	0
-#define PWM_LED8		PPS_IN_D10	//				O	0
-#define PWM_LED7		PPS_OUT_D	//				O	0
-#define PWM_LED6		PPS_OUT_D	//				O___0______
+#define PWM_LED8		PPS_OUT_D10	//				O	0
+#define PWM_LED7		PPS_OUT_D9	//				O	0
+#define PWM_LED6		PPS_OUT_D8	//				O___0______
 //#define NC			_LATD7		//				O	0
 //#define NC			_LATD6		//				O	0
 #define PWM_LED5		PPS_OUT_D5	//				O	0
