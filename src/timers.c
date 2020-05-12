@@ -244,6 +244,7 @@ inline	void SysTimeIrq	(void)
 inline void LedStatusUpdate(void)
 {
 	static S16 ledTimer = 0, ledStatus = 0;
+
 	if (++ledTimer < LedUpDurationMs)
 		return;
 	
@@ -266,17 +267,30 @@ inline void LedStatusUpdate(void)
 
 inline	void ButtonCheck(void)
 {
-	if ((Btn0_timer) && (!--Btn0_timer))
+	if ((Btn0_timer) && (!--Btn0_timer))	// speed up
 	{
+		if (LedUpDurationMs > 50)
+			LedUpDurationMs -= 50;
 	}
-	if ((Btn1_timer) && (!--Btn1_timer))
+	if ((Btn1_timer) && (!--Btn1_timer))	// change blink style
 	{
+		if (BlinkStyle == Blink)
+		{
+			BlinkStyle = OneLedOn;
+			LedDirection = (LedDirection > 0)? -1 : 1;
+		}
+		else
+			BlinkStyle++;
 	}
-	if ((Btn2_timer) && (!--Btn2_timer))
+	if ((Btn2_timer) && (!--Btn2_timer))	// speed down
 	{
+		if (LedUpDurationMs < 1000)
+			LedUpDurationMs += 50;
 	}
-	if ((Btn3_timer) && (!--Btn3_timer))
+	if ((Btn3_timer) && (!--Btn3_timer))	// restart
 	{
+			__asm__ ("RESET");
+			while(1);
 	}
 }
 
