@@ -5,7 +5,7 @@
 extern volatile U16 Btn0_timer, Btn1_timer, Btn2_timer, Btn3_timer;
 volatile U16		Sec, Ms = 0, Tics_ms = 0;
 volatile S16		LedUpDurationMs = 250, LedDirection = 1;
-volatile LED_BLINK_STYLE BlinkStyle = OneLedOn;
+volatile U8			BlinkStyle = ONE_LED_ON;
 volatile TIME_ST	SysTime;
 
 
@@ -244,20 +244,20 @@ inline void LedStatusUpdate(void)
 		return;
 	
 	ledTimer = 0;
-	switch (BlinkStyle)
+	if (BlinkStyle == BLINK_ALL)
 	{
-		case Blink:
-			ledStatus = (ledStatus)? 0 : 1;
-			LedSet(LED_CNT, (ledStatus), true);
-			break;
-		default:
-			ledStatus += LedDirection;
-			if (ledStatus >= LED_CNT)	ledStatus = 0;
-			else if (ledStatus < 0)		ledStatus = LED_CNT;
-
-			LedSet(ledStatus, true, true);
-			break;
+		ledStatus = (ledStatus)? 0 : 1;
+		LedSet(LED_CNT, (ledStatus), true);		// blink on/off all leds
+		return;
 	}
+
+	bool inverseOthers = ((BlinkStyle < NEXT_LED_ON) || 
+					 (ledStatus == 0) || (ledStatus == (LED_CNT - 1)));
+	LedSet(ledStatus, (!(BlinkStyle & 0x01)), inverseOthers);
+
+	ledStatus += LedDirection;
+	if (ledStatus >= LED_CNT)	ledStatus = 0;
+	else if (ledStatus < 0)		ledStatus = (LED_CNT - 1);
 }
 
 inline	void ButtonCheck(void)
@@ -269,13 +269,11 @@ inline	void ButtonCheck(void)
 	}
 	if ((Btn1_timer) && (!--Btn1_timer))	// change blink style
 	{
-		if (BlinkStyle == Blink)
+		if (++BlinkStyle > BLINK_ALL)
 		{
-			BlinkStyle = OneLedOn;
+			BlinkStyle = ONE_LED_ON;
 			LedDirection = (LedDirection > 0)? -1 : 1;
 		}
-		else
-			BlinkStyle++;
 	}
 	if ((Btn2_timer) && (!--Btn2_timer))	// speed down
 	{

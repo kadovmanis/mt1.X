@@ -40,14 +40,12 @@ typedef struct
 	U8	gpsFix;		// -	0x00 = no fix	GPSfix Type
 } TIME_ST;
 
-typedef enum {
-	OneLedOn,
-	OneLedOff,
-	NextOn,
-	NextOff,
-	Blink
-} LED_BLINK_STYLE;
-
+#define ONE_LED_ON		0
+#define ONE_LED_OFF		1
+#define NEXT_LED_ON		2
+#define NEXT_LED_OFF	3
+#define BLINK_ALL		4
+	
 void	OSCconfig		(OSC osc);
 void	TimersInit		(void);
 void	DelayMs			(U16 ms);
