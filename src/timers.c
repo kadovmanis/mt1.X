@@ -7,7 +7,6 @@ volatile U16		Sec, Ms = 0, Tics_ms = 0;
 volatile S16		LedUpDurationMs = 250, LedDirection = 1;
 volatile LED_BLINK_STYLE BlinkStyle = OneLedOn;
 volatile TIME_ST	SysTime;
-//volatile U16		StartYear = 2000;
 
 
 //-------------------------------------------------------------------------------------------------
@@ -107,10 +106,6 @@ void OSCconfig(OSC osc)
 		_PLLEN = 0;					// Disable PLL 96 MHz
 
 	TimersInit();
-//	Uart1SetBaudrate(BaudRates[0][osc]);
-//	Uart2_SetBaudrate(BaudRate_115200);
-//	Uart2_SetBaudrate(BaudRates[0][osc]);
-//	Uart3_SetBaudrate(BaudRates[3][osc]);
 }
 
 

@@ -38,11 +38,6 @@ void PPSconfig(enum ppsConfig ppsSwitch)
 	__builtin_write_OSCCONL(OSCCONL | 0x40);
 }
 
-void Reset      (void)
-{
-    __asm__ ("RESET");	while(1);
-}
-
 void _ledSet(U16 num, bool set)
 {
 	switch (num)
