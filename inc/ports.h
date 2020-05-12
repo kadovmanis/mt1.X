@@ -200,23 +200,23 @@ void InputInit	(void);
 //#define NC			_LATC13		//				O	0
 #define OSCI			_LATC12		//				I___0______
 //___________________________________________________________________________________
-#define InitPort_D()	LATD = 0x0000; TRISD = 0x0C0F; ODCD = 0x0000; ANSD = 0x0000
+#define InitPort_D()	LATD = 0x0000; TRISD = 0x0000; ODCD = 0x0000; ANSD = 0x0000
 //#define NC			_LATD15		//				O	0
 //#define NC			_LATD14		//				O	0
 //#define NC			_LATD13		//				O	0
 //#define NC			_LATD12		//				O___0______
-#define SET_TX			PPS_OUT_D11	//				I	0
-#define SET_RX			PPS_IN_D10	//				I	0
-//#define NC			_LATD9		//				O	0
-//#define NC			_LATD8		//				O___0______
+#define PWM_LED9		PPS_OUT_D11	//				O	0
+#define PWM_LED8		PPS_IN_D10	//				O	0
+#define PWM_LED7		PPS_OUT_D	//				O	0
+#define PWM_LED6		PPS_OUT_D	//				O___0______
 //#define NC			_LATD7		//				O	0
 //#define NC			_LATD6		//				O	0
-//#define NC			_LATD5		//				O	0
-//#define NC			_LATD4		//				O___0______
-#define BTN_3			_RD3		//				I	0
-#define BTN_2			_RD2		//				I	0
-#define BTN_1			_RD1		//				I	0
-#define BTN_0			_RD0		//				I___0______
+#define PWM_LED5		PPS_OUT_D5	//				O	0
+#define PWM_LED4		PPS_OUT_D4	//				O___0______
+#define PWM_LED3		PPS_OUT_D3	//				O	0
+#define PWM_LED2		PPS_OUT_D2	//				O	0
+#define PWM_LED1		PPS_OUT_D1	//				O	0
+#define PWM_LED0		PPS_OUT_D0	//				O___0______
 
 //___________________________________________________________________________________
 #define InitPort_E()	LATE = 0x0000; TRISE = 0x0000; ODCE = 0x0000
@@ -238,7 +238,7 @@ void InputInit	(void);
 //#define NC			_LATE0		//				O___0______
 
 //___________________________________________________________________________________
-#define InitPort_F()	LATF = 0x0000; TRISF = 0x0000; ODCF = 0x0002; ANSF = 0x0000
+#define InitPort_F()	LATF = 0x0000; TRISF = 0x0030; ODCF = 0x0002; ANSF = 0x0000
 //#define NC			_LATF15		//				O	0
 //#define NC			_LATF14		//				O	0
 //#define NC			_LATF13		//				O	0
@@ -249,8 +249,8 @@ void InputInit	(void);
 //#define NC			_LATF8		//				O___0______
 //#define NC			_LATF7		//				O	0
 //#define NC			_LATF6		//				O	0
-//#define NC			_LATF5		//				O	0
-//#define NC			_LATF4		//				O___0______
+#define SET_TX			PPS_OUT_D5	//				I	0
+#define SET_RX			PPS_IN_D4	//				I___0______
 //#define NC			_LATF3		//				O	0	
 //#define NC			_LATF3		//				O	0
 //#define NC			_LATF2		//				O	0
@@ -258,16 +258,16 @@ void InputInit	(void);
 //#define NC			_LATF0		//				O___0______
 
 //___________________________________________________________________________________
-#define InitPort_G()	LATG = 0x0000; TRISG = 0x0000; ODCG = 0x0000; ANSG = 0x0000; U1CNFG2bits.UTRDIS = 1
-//#define NC			_LATG2		//				O	0
-//#define NC			_LATG3		//				O	0
-//#define NC			_LATG6		//				O	0
-//#define NC			_LATG7		//				O___0______________
-//#define NC			_LATG8		//				O	0
-//#define NC			_LATG9		//				O	0
+#define InitPort_G()	LATG = 0x0000; TRISG = 0xFFFF; ODCG = 0x0000; ANSG = 0x0000; U1CNFG2bits.UTRDIS = 1
+//#define NC			_RD2		//				I	0
+//#define NC			_RD3		//				I	0
+#define BTN_3			_RD6		//				I	0
+#define BTN_2			_RD7		//				I___0______
+#define BTN_1			_RD8		//				I	0
+#define BTN_0			_RD9		//				I	0
 
 //------------------------------------------------------------------------------------
-#define	CN1_PORTS	0b0000000000000000
+#define	CN1_PORTS	0b0000111100000000
 /*					  |||||||||||||||+-	CN0IE	C14
 					  ||||||||||||||+--	CN1IE	C13
 					  |||||||||||||+---	CN2IE	B0
@@ -318,7 +318,7 @@ void InputInit	(void);
 					  ||+--------------	CN45IE	
 					  |+---------------	CN46IE	
 					  +----------------	CN47IE					*/
-#define	CN4_PORTS	0b0000000000011110
+#define	CN4_PORTS	0b0000000000000000
 /*					  |||||||||||||||+-	CN48IE	
 					  ||||||||||||||+--	CN49IE	D0	BTN_0
 					  |||||||||||||+---	CN50IE	D1	BTN_1
