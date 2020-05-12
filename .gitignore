@@ -22,5 +22,5 @@ private.*
 /build/default/production/
 Makefile-genesis.properties
 #Makefile-variables.mk
-Makefile-default.mk
+#Makefile-default.mk
 
